@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   # GET /posts
   # GET /posts.json
@@ -23,8 +25,9 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create
-    @post = Post.new(post_params)
+ def create
+  @post = Post.new(post_params)
+  @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
@@ -72,5 +75,3 @@ class PostsController < ApplicationController
      params.require(:post).permit(:title, :photo, :description)
     end
 end
-before_action :set_post, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!, only: [:new, :create, :edit, :update]
