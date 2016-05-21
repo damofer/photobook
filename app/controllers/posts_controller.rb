@@ -72,3 +72,5 @@ class PostsController < ApplicationController
      params.require(:post).permit(:title, :photo, :description)
     end
 end
+before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!, only: [:new, :create, :edit, :update]
