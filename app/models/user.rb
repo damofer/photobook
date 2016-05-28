@@ -9,4 +9,9 @@ def name
   firstname + ' ' + lastname
 end
 has_many :posts
+
+ validates :firstname, presence: true, length: { minimum: 1}
+ validates :lastname, presence: true, length: { minimum: 1}
+ validates :username, presence: true, length: { minimum: 6}
+ 
 end
