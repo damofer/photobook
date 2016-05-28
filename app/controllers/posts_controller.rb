@@ -25,7 +25,7 @@ before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   # POST /posts
   # POST /posts.json
- def create
+def create
   @post = Post.new(post_params)
   @post.user_id = current_user.id
 
